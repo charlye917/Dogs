@@ -1,5 +1,6 @@
 package com.charlye934.dogs.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,6 +22,10 @@ class ListViewModel: ViewModel() {
     val loading: LiveData<Boolean>
             get() = _loading
 
+    private val _dogsLoadError = MutableLiveData<Boolean>()
+    val dogsLoadError: LiveData<Boolean>
+        get() = _dogsLoadError
+
     fun refresh(){
         fetchFromRemote()
     }
@@ -28,8 +33,15 @@ class ListViewModel: ViewModel() {
     private fun fetchFromRemote(){
         _loading.value = true
         viewModelScope.launch {
-            _dogsBreed.postValue(interactor.getDataApi())
             _loading.value = false
+            val data = interactor.getDataApi()
+            Log.d("__tag",data.toString())
+            if(!data.isNullOrEmpty()){
+                _dogsBreed.postValue(data)
+                _dogsLoadError.postValue(false)
+            }else{
+                _dogsLoadError.postValue(true)
+            }
         }
     }
 }
