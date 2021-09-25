@@ -10,7 +10,9 @@ class DogInteractor {
 
     suspend fun getDataApi(): List<DogBreed>{
         val data = repository.getDogsApi()
-        Log.d("__tag", data.toString())
         return if(data.isSuccessful) data.body()!! else arrayListOf<DogBreed>()
+    }
+
+    fun storeDogsLocally(list: List<DogBreed>){
     }
 }

@@ -44,4 +44,6 @@ class ListViewModel: ViewModel() {
             }
         }
     }
+
+    private fun storeD
 }
