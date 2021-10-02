@@ -12,8 +12,8 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="dogId"
-            app:argType="integer"
-            android:defaultValue="0" />
+            app:argType="string"
+            android:defaultValue='"0"' />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

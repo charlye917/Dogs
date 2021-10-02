@@ -3,10 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="dog"
+            type="com.charlye934.dogs.data.model.DogBreed" />
+
+        <variable
+            name="palette"
+            type="com.charlye934.dogs.data.model.DogPalette" />
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.DetailFragment">
+        tools:context=".view.DetailFragment"
+        android:background="@{palette.color}">
 
         <ImageView
             android:id="@+id/dogImage"
@@ -14,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:scaleType="fitCenter"
+            android:imageUrl="@{dog.imageUrl}"
             android:minHeight="200dp"/>
 
         <TextView
@@ -21,8 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dogImage"
+            android:text="@{dog.dogName}"
             style="@style/Title"
-
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"/>
 
@@ -32,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dogName"
             style="@style/Text"
+            android:text="@{dog.bredFor}"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"/>
 
@@ -41,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dogPurpose"
             style="@style/Text"
+            android:text="@{dog.temperament}"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"/>
 
@@ -50,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/dogTemperament"
             style="@style/Text"
+            android:text="@{dog.lifeSpanval}"
             android:layout_centerHorizontal="true"
             android:layout_margin="4dp"/>
 

@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.charlye934.dogs.databinding.FragmentListBinding
 import com.charlye934.dogs.ui.view.adapter.DogsAdapter
 import com.charlye934.dogs.ui.viewmodel.ListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListFragment : Fragment() {
 
     private lateinit var binding: FragmentListBinding
@@ -26,8 +28,21 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setOnRefreshListener()
         adapterConfiguration()
         observerViewmodel()
+    }
+
+    private fun setOnRefreshListener(){
+        binding.refreshLayout.setOnRefreshListener {
+            viewModel.refreshBypassache()
+            binding.apply{
+                rvDogsList.visibility = View.GONE
+                listError.visibility = View.GONE
+                loadingView.visibility = View.VISIBLE
+                refreshLayout.isRefreshing = false
+            }
+        }
     }
 
     private fun adapterConfiguration(){

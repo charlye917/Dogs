@@ -4,5 +4,5 @@ import android.view.View
 import com.charlye934.dogs.databinding.ItemDogBinding
 
 interface DogClickListener {
-    fun onDogClicked(binding: ItemDogBinding)
+    fun onDogClicked(view: View)
 }

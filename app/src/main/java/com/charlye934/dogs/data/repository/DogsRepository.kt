@@ -1,37 +1,39 @@
 package com.charlye934.dogs.data.repository
 
+import android.content.Context
+import android.util.Log
 import com.charlye934.dogs.data.db.DogDao
-import com.charlye934.dogs.data.db.DogDataBase
+import com.charlye934.dogs.data.db.DogDatabase
 import com.charlye934.dogs.data.model.DogBreed
 import com.charlye934.dogs.data.service.DogApiService
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.charlye934.dogs.data.service.DogsApi
+import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Response
+import javax.inject.Inject
 
-class DogsRepository {
-    private val dogApi = DogApiService()
-    private lateinit var dogDao: DogDao
+class DogsRepository @Inject constructor(
+    private val dogApi: DogApiService,
+    @ApplicationContext context: Context
+) {
+    private var dogDao = DogDatabase(context).dogDao()
 
     suspend fun getDogsApi(): Response<List<DogBreed>>{
         return dogApi.getDogs()
     }
 
-    suspend fun saveAllDogs(listDogs: List<DogBreed>){
-        CoroutineScope(Dispatchers.IO).launch {
-            dogDao.insertAll(listDogs)
-        }
+    suspend fun saveAllDogs(dogs: List<DogBreed>): List<Long>{
+        return dogDao.insertAll(*dogs.toTypedArray())
     }
 
     suspend fun clearAllDogs(){
-        CoroutineScope(Dispatchers.IO).launch {
-            dogDao.deleteAllDogs()
-        }
+        dogDao.deleteAllDogs()
     }
 
     suspend fun getAllDogs(): List<DogBreed>{
         return dogDao.getAllDogs()
     }
 
-
+    suspend fun getDog(dogId: String): DogBreed{
+        return dogDao.getDog(dogId)
+    }
 }

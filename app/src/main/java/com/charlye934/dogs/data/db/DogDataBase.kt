@@ -5,24 +5,27 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.charlye934.dogs.data.model.DogBreed
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Singleton
 
 @Database(entities = arrayOf(DogBreed::class), version = 1)
-abstract class DogDataBase: RoomDatabase() {
-    companion object{
-        @Volatile private var instance: DogDataBase? = null
+abstract class DogDatabase: RoomDatabase() {
+    abstract fun dogDao(): DogDao
+
+    companion object {
+        @Volatile private var instance: DogDatabase? = null
         private val LOCK = Any()
 
-        operator fun invoke(context: Context) = instance ?: synchronized(LOCK){
-            instance ?: buildDatabase(context).also{
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: buildDatabase(context).also {
                 instance = it
             }
         }
 
-        private fun buildDatabase(context: Context) = Room.databaseBuilder(
+        private fun buildDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
             context.applicationContext,
-            DogDataBase::class.java,
+            DogDatabase::class.java,
             "dogdatabase"
         ).build()
     }
-
 }

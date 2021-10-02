@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity
+@Entity(tableName = "dogbreed")
 data class DogBreed(
     @ColumnInfo(name = "breed_id")
     @SerializedName("id")
@@ -37,5 +37,4 @@ data class DogBreed(
 ){
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
-
 }
