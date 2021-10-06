@@ -14,6 +14,11 @@
             android:name="dogId"
             app:argType="string"
             android:defaultValue='"0"' />
+        <action
+            android:id="@+id/action_detailFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

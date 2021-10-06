@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.DetailFragment"
-        android:background="@{palette.color}">
+        android:background="@{palette.color}"
+        android:layout_margin="20dp">
 
         <ImageView
             android:id="@+id/dogImage"
@@ -26,7 +27,8 @@
             android:layout_alignParentTop="true"
             android:scaleType="fitCenter"
             android:imageUrl="@{dog.imageUrl}"
-            android:minHeight="200dp"/>
+            android:minHeight="200dp"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/dogName"
