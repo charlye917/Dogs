@@ -9,7 +9,12 @@
         android:id="@+id/detailFragment"
         android:name="com.charlye934.dogs.ui.view.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="dogId"
+            app:argType="string"
+            android:defaultValue='"0"' />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.charlye934.dogs.ui.view.SettingsFragment"

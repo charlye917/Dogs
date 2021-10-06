@@ -5,9 +5,15 @@
         <variable
             name="dogs"
             type="com.charlye934.dogs.data.model.DogBreed" />
+
+        <variable
+            name="listener"
+            type="com.charlye934.dogs.ui.view.listener.DogClickListener" />
+
     </data>
 
     <LinearLayout
+        android:id="@+id/cardDogs"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="125dp">
@@ -16,14 +22,15 @@
             android:id="@+id/dogId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:text="@{dogs.breedId}"/>
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
-            android:padding="4dp"/>
+            android:padding="4dp"
+            android:imageUrl="@{dogs.imageUrl}"/>
 
         <LinearLayout
             android:layout_width="0dp"
