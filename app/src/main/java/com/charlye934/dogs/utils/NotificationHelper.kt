@@ -17,15 +17,17 @@ class NotificationHelper(private val context: Context) {
     private val CHANNEL_ID = "Dogs channerl id"
     private val NOTIFICATION_ID = 123
 
-    private val icon = BitmapFactory.decodeResource(context.resources, R.drawable.ic_dog)
+    private val icon = BitmapFactory.decodeResource(context.resources, R.drawable.dog)
     private val intent = Intent(context, MainActivity::class.java).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
     }
     private val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
     fun createNotification(){
+
+        createNotificationChannel()
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_dog)
+            .setSmallIcon(R.drawable.dog)
             .setContentTitle("Dogs retrived")
             .setContentText("This notification has some content")
             .setStyle(NotificationCompat.BigPictureStyle()

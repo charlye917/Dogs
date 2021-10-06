@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.charlye934.dogs.data.db.DogDatabase
 import com.charlye934.dogs.data.model.DogBreed
 import com.charlye934.dogs.data.repository.DogsRepository
+import com.charlye934.dogs.utils.NotificationHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
@@ -28,6 +29,7 @@ class DetailViewModel @Inject constructor(
         viewModelScope.launch{
             val dog = repository.getDog(uuid)
             _dogsBreed.postValue(dog)
+            NotificationHelper(context).createNotification()
         }
     }
 }
