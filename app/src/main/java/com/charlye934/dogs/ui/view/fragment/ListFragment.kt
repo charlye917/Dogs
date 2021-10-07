@@ -1,13 +1,14 @@
-package com.charlye934.dogs.ui.view
+package com.charlye934.dogs.ui.view.fragment
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.charlye934.dogs.R
 import com.charlye934.dogs.databinding.FragmentListBinding
 import com.charlye934.dogs.ui.view.adapter.DogsAdapter
 import com.charlye934.dogs.ui.viewmodel.ListViewModel
@@ -21,6 +22,9 @@ class ListFragment : Fragment() {
     private lateinit var dogAdapter: DogsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        setHasOptionsMenu(true)
+
         binding = FragmentListBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -76,5 +80,21 @@ class ListFragment : Fragment() {
         viewModel.dogsLoadError.observe(viewLifecycleOwner, Observer { error ->
             binding.listError.visibility = if(error) View.VISIBLE else  View.GONE
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.actionSettings -> {
+                val action = ListFragmentDirections.actionListFragmentToSettingsFragment()
+                requireView().findNavController().navigate(action)
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

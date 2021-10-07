@@ -1,17 +1,15 @@
 package com.charlye934.dogs.ui.view.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.charlye934.dogs.R
 import com.charlye934.dogs.data.model.DogBreed
 import com.charlye934.dogs.databinding.ItemDogBinding
-import com.charlye934.dogs.ui.view.ListFragmentDirections
+import com.charlye934.dogs.ui.view.fragment.ListFragmentDirections
 import com.charlye934.dogs.ui.view.listener.DogClickListener
 
 class DogsAdapter(): RecyclerView.Adapter<DogsAdapter.DogsViewHolder>(), DogClickListener {

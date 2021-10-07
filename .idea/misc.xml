@@ -13,6 +13,8 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.17300724637681159" />
         <entry key="app/src/main/res/layout/item_dog.xml" value="0.1852355072463768" />
         <entry key="app/src/main/res/layout/send_sms_dialog.xml" value="0.1852355072463768" />
+        <entry key="app/src/main/res/menu/list_menu.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/xml/preferences.xml" value="0.18931159420289856" />
       </map>
     </option>
   </component>

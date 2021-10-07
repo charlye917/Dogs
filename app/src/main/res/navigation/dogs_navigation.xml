@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.charlye934.dogs.ui.view.DetailFragment"
+        android:name="com.charlye934.dogs.ui.view.fragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
@@ -17,12 +17,12 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.charlye934.dogs.ui.view.SettingsFragment"
+        android:name="com.charlye934.dogs.ui.view.fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.charlye934.dogs.ui.view.ListFragment"
+        android:name="com.charlye934.dogs.ui.view.fragment.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action

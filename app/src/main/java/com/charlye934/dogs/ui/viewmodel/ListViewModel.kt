@@ -57,7 +57,10 @@ class ListViewModel @Inject constructor(
         try {
             val cachePreferencesInt = cachePreferences?.toInt() ?: 5 * 60
             refreshTime = cachePreferencesInt.times(1000 * 1000 * 1000L)
+            Log.d("__tag", refreshTime.toString())
+            Log.d("__tag", "entro")
         }catch (e: NumberFormatException){
+            Log.d("__tag", "error:  $e")
             e.printStackTrace()
         }
     }
