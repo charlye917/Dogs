@@ -11,6 +11,7 @@ import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.charlye934.dogs.MainActivity
 import com.charlye934.dogs.R
 import com.charlye934.dogs.data.model.DogPalette
 import com.charlye934.dogs.databinding.FragmentDetailBinding
@@ -23,6 +24,8 @@ class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private val viewModel: DetailViewModel by viewModels()
     private var dogUuid = "0"
+
+    private var sendSmsStarted = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentDetailBinding.inflate(layoutInflater)
@@ -72,11 +75,18 @@ class DetailFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
          when(item.itemId){
-            R.id.action_send_sms ->{ }
+            R.id.action_send_sms ->{
+                sendSmsStarted = true
+                (activity as MainActivity).checkSmsPermission()
+            }
 
             R.id.action_share ->{ }
         }
 
         return true
+    }
+
+    fun onPermissionResult(permissionGranted: Boolean){
+
     }
 }
