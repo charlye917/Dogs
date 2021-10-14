@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -47,7 +48,9 @@ class MainActivity : AppCompatActivity() {
 
     fun checkSmsPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED){
+            Log.d("__tag", "primer if")
             if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)){
+                Log.d("__tag", "segundo if")
                 AlertDialog.Builder(this)
                     .setTitle("Send SMS permission")
                     .setMessage("This app requieres access to send an SMS")
@@ -59,9 +62,11 @@ class MainActivity : AppCompatActivity() {
                     }
                 }.show()
             }else{
+                Log.d("__tag", "else")
                 requestSmsPermission()
             }
         }else{
+            Log.d("__tag", "else 2")
             notifyDetailFragment(true)
         }
     }
@@ -88,9 +93,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun notifyDetailFragment(permissionGranted: Boolean){
-        val activityFragment = supportFragmentManager.findFragmentById(R.id.dogs_navigation)!!.childFragmentManager.fragments[0]
-        if(activityFragment is DetailFragment){
-            (activityFragment as DetailFragment).onPermissionResult(permissionGranted)
+        //val activityFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+        val activityFragment = supportFragmentManager.fragments[0].childFragmentManager.primaryNavigationFragment
+        when(activityFragment){
+          is DetailFragment ->{
+                Log.d("__tag", "entro notifydetail")
+                activityFragment.onPermissionResult(permissionGranted)
+            }
         }
     }
 }
